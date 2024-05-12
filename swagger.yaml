@@ -1,53 +1,246 @@
 openapi: 3.0.0
 info:
-  title: students API
+  title: Students-API
   contact: {}
-  version: "1.0"
+  version: '1.0'
 servers:
-  - url: https://students-api-sonali.onrender.com/api/v1
-    variables: {}
+- url: https://students-api-sonali.onrender.com/api/v1
+  variables: {}
 paths:
-  /students:
-    get:
-      tags:
-        - Students
-      summary: Get All Students
-      operationId: GetAllStudents
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          headers: {}
-      deprecated: false
-      security:
-        - bearer: []
+  /auth/register:
     post:
       tags:
-        - Students
-      summary: Create Student
-      operationId: CreateStudent
+      - Auth
+      summary: Register User
+      operationId: RegisterUser
       parameters: []
       requestBody:
-        description: ""
+        description: ''
         content:
           application/json:
             schema:
               allOf:
-                - $ref: "#/components/schemas/CreateStudentRequest"
-                - example:
-                    SchoolName: Russell Branchs School
-                    Grade: grade 1
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  name: Veda
+                  email: Veda@gmail.com
+                  password: secret123
             example:
-              SchoolName: Russell Branchs School
-              Grade: grade 1
+              name: Veda
+              email: Veda@gmail.com
+              password: secret123
         required: true
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginUserRequest'
+              - example:
+                  email: Prak1@gmail.com
+                  password: secret71
+            example:
+              email: Prak1@gmail.com
+              password: secret71
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /api/v1/auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register User Online
+      operationId: RegisterUserOnline
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserOnlineRequest'
+              - example:
+                  name: Veda
+                  email: Veda@gmail.com
+                  password: secret123
+            example:
+              name: Veda
+              email: Veda@gmail.com
+              password: secret123
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /api/v1/auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login User Online
+      operationId: LoginUserOnline
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginUserOnlineRequest'
+              - example:
+                  email: Veda@gmail.com
+                  password: secret123
+            example:
+              email: Veda@gmail.com
+              password: secret123
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /students:
+    post:
+      tags:
+      - Students
+      summary: Create Student
+      operationId: CreateStudent
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateStudentRequest'
+              - example:
+                  SchoolName: Gold Ridge Elementary School
+                  Grade: grade 5
+            example:
+              SchoolName: Gold Ridge Elementary School
+              Grade: grade 5
+        required: true
+      responses:
+        '200':
+          description: ''
           headers: {}
       deprecated: false
       security:
-        - bearer: []
+      - bearer: []
+    get:
+      tags:
+      - Students
+      summary: Get All Students
+      operationId: GetAllStudents
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /Students:
+    post:
+      tags:
+      - Students
+      summary: Create Teacher
+      operationId: CreateTeacher
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateTeacherRequest'
+              - example:
+                  TeacherName: Mrs. Ma
+                  TeacherQualification: Graduation
+            example:
+              TeacherName: Mrs. Ma
+              TeacherQualification: Graduation
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []  
+    get:
+      tags:
+      - Students
+      summary: Get Single Student
+      operationId: GetSingleStudent
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []  
+    patch:
+      tags:
+      - Students
+      summary: Update Student Info
+      operationId: UpdateStudentInfo
+      parameters: []
+      requestBody:
+
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateStudentInfoRequest'
+              - example:
+                  SchoolName: Fremont  School
+            example:
+              SchoolName: Fremont  School
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  
+    delete:
+      tags:
+      - Students
+      summary: Delete Student Record
+      operationId: DeleteStudentRecord
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
   /students/{id}:
     parameters:
       - in: path
@@ -58,120 +251,72 @@ paths:
         description: The student ID
     get:
       tags:
-        - Students
-      summary: Get Single Student
-      operationId: GetSingleStudent
+      - Students
+      summary: Get Single Student Online
+      operationId: GetSingleStudentOnline
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
       security:
-        - bearer: []
+      - bearer: []
     patch:
       tags:
-        - Students
-      summary: Update Student Info
-      operationId: UpdateStudentInfo
+      - Students
+      summary: Update Student Info Online
+      operationId: UpdateStudentInfoOnline
       parameters: []
       requestBody:
-        description: ""
+        description: ''
+
         content:
           application/json:
             schema:
               allOf:
-                - $ref: "#/components/schemas/UpdateStudentInfoRequest"
-                - example:
-                    SchoolName: Russell Ranch Elementary School
+              - $ref: '#/components/schemas/UpdateStudentInfoOnlineRequest'
+              - example:
+                  SchoolName: Russell Ranch Elementary School
             example:
               SchoolName: Russell Ranch Elementary School
         required: true
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
       security:
-        - bearer: []
-
+      - bearer: []
+  /api/v1/students/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The student ID
     delete:
       tags:
-        - Students
-      summary: Delete Student Record
-      operationId: DeleteStudentRecord
+      - Students
+      summary: Delete Student Record Online
+      operationId: DeleteStudentRecordOnline
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
       security:
-        - bearer: []
-  /auth/register:
-    post:
-      tags:
-        - Auth
-      summary: Register User
-      operationId: RegisterUser
-      parameters: []
-      requestBody:
-        description: ""
-        content:
-          application/json:
-            schema:
-              allOf:
-                - $ref: "#/components/schemas/RegisterUserRequest"
-                - example:
-                    name: Veda
-                    email: Veda@gmail.com
-                    password: secret123
-            example:
-              name: Veda
-              email: Veda@gmail.com
-              password: secret123
-        required: true
-      responses:
-        "200":
-          description: ""
-          headers: {}
-      deprecated: false
-      security: []
-  /auth/login:
-    post:
-      tags:
-        - Auth
-      summary: Login User
-      operationId: LoginUser
-      parameters: []
-      requestBody:
-        description: ""
-        content:
-          application/json:
-            schema:
-              allOf:
-                - $ref: "#/components/schemas/LoginUserRequest"
-                - example:
-                    email: Veda@gmail.com
-                    password: secret123
-            example:
-              email: Veda@gmail.com
-              password: secret123
-        required: true
-      responses:
-        "200":
-          description: ""
-          headers: {}
-      deprecated: false
-      security: []
+      - bearer: []
 components:
   schemas:
     RegisterUserRequest:
       title: RegisterUserRequest
       required:
-        - name
-        - email
-        - password
+      - name
+      - email
+      - password
       type: object
       properties:
         name:
@@ -187,8 +332,78 @@ components:
     LoginUserRequest:
       title: LoginUserRequest
       required:
-        - email
-        - password
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: Prak1@gmail.com
+        password: secret71
+    CreateStudentRequest:
+      title: CreateStudentRequest
+      required:
+      - SchoolName
+      - Grade
+      type: object
+      properties:
+        SchoolName:
+          type: string
+        Grade:
+          type: string
+      example:
+        SchoolName: Gold Ridge Elementary School
+        Grade: grade 5
+    CreateTeacherRequest:
+      title: CreateTeacherRequest
+      required:
+      - TeacherName
+      - TeacherQualification
+      type: object
+      properties:
+        TeacherName:
+          type: string
+        TeacherQualification:
+          type: string
+      example:
+        TeacherName: Mrs. Ma
+        TeacherQualification: Graduation
+    UpdateStudentInfoRequest:
+      title: UpdateStudentInfoRequest
+      required:
+      - SchoolName
+      type: object
+      properties:
+        SchoolName:
+          type: string
+      example:
+        SchoolName: Fremont  School
+    RegisterUserOnlineRequest:
+      title: RegisterUserOnlineRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Veda
+        email: Veda@gmail.com
+        password: secret123
+    LoginUserOnlineRequest:
+      title: LoginUserOnlineRequest
+      required:
+      - email
+      - password
       type: object
       properties:
         email:
@@ -198,21 +413,21 @@ components:
       example:
         email: Veda@gmail.com
         password: secret123
-    UpdateStudentInfoRequest:
-      title: UpdateStudentInfoRequest
+    UpdateStudentInfoOnlineRequest:
+      title: UpdateStudentInfoOnlineRequest
       required:
-        - SchoolName
+      - SchoolName
       type: object
       properties:
         SchoolName:
           type: string
       example:
         SchoolName: Russell Ranch Elementary School
-    CreateStudentRequest:
-      title: CreateStudentRequest
+    CreateStudentOnlineRequest:
+      title: CreateStudentOnlineRequest
       required:
-        - SchoolName
-        - Grade
+      - SchoolName
+      - Grade
       type: object
       properties:
         SchoolName:
@@ -228,7 +443,8 @@ components:
       scheme: bearer
 security: []
 tags:
-  - name: Students
-    description: ""
-  - name: Auth
-    description: ""
+- name: Auth
+  description: ''
+- name: Students
+  description: ''
+
