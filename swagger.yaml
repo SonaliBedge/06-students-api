@@ -187,9 +187,7 @@ paths:
           headers: {}
       deprecated: false
       security:
-      - bearer: []
-  
-  
+      - bearer: []  
     get:
       tags:
       - Students
@@ -202,8 +200,7 @@ paths:
           headers: {}
       deprecated: false
       security:
-      - bearer: []
-  
+      - bearer: []  
     patch:
       tags:
       - Students
@@ -211,6 +208,7 @@ paths:
       operationId: UpdateStudentInfo
       parameters: []
       requestBody:
+
         description: ''
         content:
           application/json:
@@ -272,6 +270,7 @@ paths:
       parameters: []
       requestBody:
         description: ''
+
         content:
           application/json:
             schema:
@@ -444,8 +443,8 @@ components:
       scheme: bearer
 security: []
 tags:
-
 - name: Auth
   description: ''
 - name: Students
   description: ''
+

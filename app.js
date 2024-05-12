@@ -17,8 +17,8 @@ const swaggerDocument = YAML.load("./swagger.yaml");
 
 //connectDB
 const connectDB = require("./db/connect");
-
 const authenticateUser = require("./middleware/authentication");
+
 //routers
 const authRouter = require("./routes/auth");
 const studentsRouter = require("./routes/students");
@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
   res.send('<h1>Students API</h1><a href="/api-docs">Documentation</a>');
 });
 
-app.use("/api-docs", swaggerUI.server, swaggerUI.setup(swaggerDocument));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // routesgit
 app.use("/api/v1/auth", authRouter);
